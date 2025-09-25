@@ -4,7 +4,7 @@
  * for Adventures in Algorithms
  * At Menlo School in Atherton, CA
  *
- * Completed by: [YOUR NAME HERE]
+ * Completed by: Surya De Datta
  * */
 
 public class SpellCheck {
@@ -19,6 +19,22 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
 
+        int[] gurt = new int[dictionary.length];
+        for(int i = 0; i < dictionary.length; i++)
+        {
+            gurt[i] = computeNum(dictionary[i]);
+        }
+        
         return null;
+    }
+
+    public int computeNum(String mysteryWord)
+    {
+        int finalNum = 0;
+        for(int i = 0; i < mysteryWord.length(); i++)
+        {
+            finalNum += (int) mysteryWord.charAt(i) * 26^i;
+        }
+        return finalNum;
     }
 }

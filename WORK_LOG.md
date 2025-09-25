@@ -1,9 +1,9 @@
 Name: YOUR NAME HERE
 
-| Date    |  Time  |                                     Update |
-|:--------|:------:|-------------------------------------------:|
-| April 5 | 9-10pm | I tried to write abstract, efficient code. |
-|         |        |                                            |
+| Date    |     Time      |                                                                                                                                                                                                                                                                                                                                                                                         Update |
+|:--------|:-------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| April 5 |    9-10pm     |                                                                                                                                                                                                                                                                                                                                                     I tried to write abstract, efficient code. |
+| Sep 25  | 1:00pm-1:45pm | I began thinking about the problem like Lucas said in the class. I tried to associate distinct numbers to each word in the dictionary. I figured I'd need a helper function for that so I just started by making a method that would convert characters to ascii values and multiply to make a likely unique value. In my main function, I called the function on each word in the dictionary. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.

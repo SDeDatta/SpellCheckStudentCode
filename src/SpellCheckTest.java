@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 import org.junit.jupiter.api.Timeout;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -129,8 +129,7 @@ public class SpellCheckTest {
      * Cleans the given textfile. Removes em-dashes, possessive apostrophes, and leading and
      * trailing apostrophes. Splits characters by spaces or punctuation. Removes numeric words.
      * Sets everything to lowercase.
-     * @param br
-     * @param w
+     * @param text
      */
     public static void cleanText(String text) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("test_files/" + text + ".txt"));
