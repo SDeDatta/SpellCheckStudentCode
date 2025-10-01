@@ -21,12 +21,12 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
 
-        int[] gurt = new int[dictionary.length];
+        long [] gurt = new long[dictionary.length];
         for(int i = 0; i < dictionary.length; i++)
         {
             gurt[i] = computeNum(dictionary[i]);
         }
-        int[] bau = new int[text.length];
+        long[] bau = new long[text.length];
         for (int j = 0; j < text.length; j++)
         {
             bau[j] = computeNum(text[j]);
@@ -40,10 +40,6 @@ public class SpellCheck {
                 {
                     matches[k] = true;
                     break;
-                }
-                else
-                {
-                    matches[k] = false;
                 }
             }
         }
@@ -64,12 +60,12 @@ public class SpellCheck {
 
     }
 
-    public int computeNum(String mysteryWord)
+    public long computeNum(String mysteryWord)
     {
-        int finalNum = 0;
+        long finalNum = 0;
         for(int i = 0; i < mysteryWord.length(); i++)
         {
-            finalNum += (int) mysteryWord.charAt(i) * Math.pow(26,i);
+            finalNum = i * 27 + (mysteryWord.charAt(i));
         }
         return finalNum;
     }
