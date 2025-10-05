@@ -3,10 +3,10 @@ public class Node
     boolean isWord;
     Node[] next;
 
-    public Node(boolean isWord2, Node[] next2)
+    public Node()
     {
-        isWord = isWord2;
-        next = next2;
+        isWord = false;
+        next = new Node[26];
     }
 
     public boolean isWord()

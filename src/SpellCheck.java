@@ -21,52 +21,40 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
 
-        long [] gurt = new long[dictionary.length];
-        for(int i = 0; i < dictionary.length; i++)
+        Trie dictTrie = new Trie();
+
+        for(String word: dictionary)
         {
-            gurt[i] = computeNum(dictionary[i]);
+            dictTrie.insert(word);
         }
-        long[] bau = new long[text.length];
-        for (int j = 0; j < text.length; j++)
+        Trie missedTrie = new Trie();
+        for(String word: text)
         {
-            bau[j] = computeNum(text[j]);
-        }
-        boolean[] matches = new boolean[text.length];
-        for(int k = 0; k < bau.length; k++)
-        {
-            for(int q = 0; q < gurt.length; q++)
+            if(dictTrie.lookUp(word) == false)
             {
-                if(bau[k] == gurt[q])
+                if(!missedTrie.lookUp(word))
                 {
-                    matches[k] = true;
-                    break;
+                    missedTrie.insert(word);
                 }
             }
         }
-        ArrayList<String> bad = new ArrayList<String>();
-        for(int z = 0; z < matches.length; z++)
-        {
-            if(matches[z] == false)
-            {
-                bad.add(text[z]);
-            }
-        }
-        String[] badStr = new String[bad.size()];
-        for(int h = 0; h < badStr.length; h++)
-        {
-            badStr[h] = bad.get(h);
-        }
-        return badStr;
+        /*
+        Create a Trie for the dictionary
 
+        For each word in the dictionary,
+        insert it into the Trie
+
+        Create a Trie for the misspelled words
+
+        for each word in text:
+        if not in dictionary Trie and
+        not in misspelled Trie
+        add to misspelled Trie*/
+
+        return trieToArray(missedTrie);
     }
-
-    public long computeNum(String mysteryWord)
+    public String[] trieToArray(Trie trie)
     {
-        long finalNum = 0;
-        for(int i = 0; i < mysteryWord.length(); i++)
-        {
-            finalNum = i * 27 + (mysteryWord.charAt(i));
-        }
-        return finalNum;
+
     }
 }
