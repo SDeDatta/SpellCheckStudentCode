@@ -55,6 +55,28 @@ public class SpellCheck {
     }
     public String[] trieToArray(Trie trie)
     {
+        ArrayList<String> arr = new ArrayList<>();
+        helper(trie.getRoot(), "", arr);
+        return arr.toArray(new String[0]);
+    }
 
+    public void helper(Node node, String current, ArrayList<String>arr)
+    {
+        if(node == null)
+        {
+            return;
+        }
+        if(node.isWord())
+        {
+            arr.add(current);
+        }
+        for (int i = 0; i < 26; i++)
+        {
+            if(node.getNext()[i] != null)
+            {
+                char toAdd = (char) ((char) i + 'a');
+                helper(node.getNext()[i],current + toAdd, arr);
+            }
+        }
     }
 }

@@ -7,13 +7,22 @@ public class Trie
         root = new Node();
     }
 
+    public Node getRoot() {
+        return root;
+    }
+
     public void insert(String word)
     {
         Node currentNode = root;
         boolean found = false;
+        int num = 0;
         for(char c: word.toCharArray())
         {
-            int num = c - 'a';
+            if (c == '\'') {
+                num = 26;
+            } else {
+                num = c - 'a';
+            }
             if(currentNode.getNext()[num] == null)
             {
                 currentNode.getNext()[num] = new Node();
@@ -26,9 +35,14 @@ public class Trie
     public boolean lookUp(String word)
     {
         Node currentNode = root;
+        int num = 0;
         for(char c: word.toCharArray())
         {
-            int num = c - 'a';
+            if (c == '\'') {
+                num = 26;
+            } else {
+                num = c - 'a';
+            }
             if(currentNode.getNext()[num] == null)
             {
                 return false;

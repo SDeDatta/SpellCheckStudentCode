@@ -6,7 +6,7 @@ public class Node
     public Node()
     {
         isWord = false;
-        next = new Node[26];
+        next = new Node[27];
     }
 
     public boolean isWord()
