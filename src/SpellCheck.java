@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class SpellCheck {
 
-
+    public static final int EXT_ASCII_LENGTH = 256;
     /**
      * checkWords finds all words in text that are not present in dictionary
      *
@@ -28,30 +28,19 @@ public class SpellCheck {
             dictTrie.insert(word);
         }
         Trie missedTrie = new Trie();
+        ArrayList<String> missedList = new ArrayList<>();
         for(String word: text)
         {
             if(dictTrie.lookUp(word) == false)
             {
                 if(!missedTrie.lookUp(word))
                 {
+                    missedList.add(word);
                     missedTrie.insert(word);
                 }
             }
         }
-        /*
-        Create a Trie for the dictionary
-
-        For each word in the dictionary,
-        insert it into the Trie
-
-        Create a Trie for the misspelled words
-
-        for each word in text:
-        if not in dictionary Trie and
-        not in misspelled Trie
-        add to misspelled Trie*/
-
-        return trieToArray(missedTrie);
+        return missedList.toArray(new String[0]);
     }
     public String[] trieToArray(Trie trie)
     {
@@ -70,11 +59,11 @@ public class SpellCheck {
         {
             arr.add(current);
         }
-        for (int i = 0; i < 26; i++)
+        for (int i = 0; i < 256; i++)
         {
             if(node.getNext()[i] != null)
             {
-                char toAdd = (char) ((char) i + 'a');
+                char toAdd = (char) (i);
                 helper(node.getNext()[i],current + toAdd, arr);
             }
         }

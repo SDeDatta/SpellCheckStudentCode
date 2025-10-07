@@ -18,11 +18,7 @@ public class Trie
         int num = 0;
         for(char c: word.toCharArray())
         {
-            if (c == '\'') {
-                num = 26;
-            } else {
-                num = c - 'a';
-            }
+            num = (int) c;
             if(currentNode.getNext()[num] == null)
             {
                 currentNode.getNext()[num] = new Node();
@@ -38,12 +34,8 @@ public class Trie
         int num = 0;
         for(char c: word.toCharArray())
         {
-            if (c == '\'') {
-                num = 26;
-            } else {
-                num = c - 'a';
-            }
-            if(currentNode.getNext()[num] == null)
+            num = (int) c;
+            if(num < 0 || num >= SpellCheck.EXT_ASCII_LENGTH || currentNode.getNext()[num] == null)
             {
                 return false;
             }
