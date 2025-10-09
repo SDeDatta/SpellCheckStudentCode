@@ -21,7 +21,7 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
 
-        Trie dictTrie = new Trie();
+        /*Trie dictTrie = new Trie();
 
         for(String word: dictionary)
         {
@@ -40,32 +40,27 @@ public class SpellCheck {
                 }
             }
         }
-        return missedList.toArray(new String[0]);
-    }
-    public String[] trieToArray(Trie trie)
-    {
-        ArrayList<String> arr = new ArrayList<>();
-        helper(trie.getRoot(), "", arr);
-        return arr.toArray(new String[0]);
-    }
+        return missedList.toArray(new String[0]);*/
 
-    public void helper(Node node, String current, ArrayList<String>arr)
-    {
-        if(node == null)
+        TST dictTST = new TST();
+
+        for(String word: dictionary)
         {
-            return;
+            dictTST.insert(word);
         }
-        if(node.isWord())
+        TST missedTST = new TST();
+        ArrayList<String> missedList = new ArrayList<>();
+        for(String word: text)
         {
-            arr.add(current);
-        }
-        for (int i = 0; i < 256; i++)
-        {
-            if(node.getNext()[i] != null)
+            if(missedTST.lookUp(word) == false)
             {
-                char toAdd = (char) (i);
-                helper(node.getNext()[i],current + toAdd, arr);
+                if(!missedTST.lookUp(word))
+                {
+                    missedList.add(word);
+                    missedTST.insert(word);
+                }
             }
         }
+        return missedList.toArray(new String[0]);
     }
 }
