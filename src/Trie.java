@@ -14,15 +14,15 @@ public class Trie
     {
         Node currentNode = root;
         boolean found = false;
-        int num = 0;
+        //int num = 0;
         for(char c: word.toCharArray())
         {
-            num = (int) c;
-            if(currentNode.getNext()[num] == null)
+            //num = (int) c;
+            if(currentNode.getNext()[c] == null)
             {
-                currentNode.getNext()[num] = new Node();
+                currentNode.getNext()[c] = new Node();
             }
-            currentNode = currentNode.getNext()[num];
+            currentNode = currentNode.getNext()[c];
         }
         currentNode.setWord(true);
     }

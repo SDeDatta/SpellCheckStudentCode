@@ -20,8 +20,13 @@ public class SpellCheck {
      * @return String[] of all mispelled words in the order they appear in text. No duplicates.
      */
     public String[] checkWords(String[] text, String[] dictionary) {
+        // return runTrie(text, dictionary);
+        return runTST(text, dictionary);
 
-        /*Trie dictTrie = new Trie();
+    }
+    private String[] runTrie(String[] text, String[] dictionary)
+    {
+        Trie dictTrie = new Trie();
 
         for(String word: dictionary)
         {
@@ -31,7 +36,7 @@ public class SpellCheck {
         ArrayList<String> missedList = new ArrayList<>();
         for(String word: text)
         {
-            if(dictTrie.lookUp(word) == false)
+            if(!dictTrie.lookUp(word))
             {
                 if(!missedTrie.lookUp(word))
                 {
@@ -40,8 +45,10 @@ public class SpellCheck {
                 }
             }
         }
-        return missedList.toArray(new String[0]);*/
-
+        return missedList.toArray(new String[0]);
+    }
+    private String[] runTST(String[] text, String[] dictionary)
+    {
         TST dictTST = new TST();
 
         for(String word: dictionary)
@@ -52,7 +59,7 @@ public class SpellCheck {
         ArrayList<String> missedList = new ArrayList<>();
         for(String word: text)
         {
-            if(missedTST.lookUp(word) == false)
+            if(!dictTST.lookUp(word))
             {
                 if(!missedTST.lookUp(word))
                 {

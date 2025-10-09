@@ -41,7 +41,7 @@ public class TST
                 }
                 current = current.getChild(0);
             }
-            else if (c == current.getC())
+            else
             {
                 if(index == word.length() - 1)
                 {
@@ -51,10 +51,7 @@ public class TST
                 index++;
                 if(current.getChild(1) == null)
                 {
-                    if(index < word.length())
-                    {
-                        current.setChild(word.charAt(index), 1);
-                    }
+                    current.setChild(word.charAt(index), 1);
                 }
                 current = current.getChild(1);
             }

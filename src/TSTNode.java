@@ -4,11 +4,11 @@ public class TSTNode
     TSTNode[] children;
     boolean isWord;
     char c;
-    public TSTNode(char c2)
+    public TSTNode(char c)
     {
         children = new TSTNode[3];
         isWord = false;
-        c = c2;
+        this.c = c;
     }
 
     public char getC() {
@@ -27,8 +27,8 @@ public class TSTNode
     {
         return children[spot];
     }
-    public void setChild(char c3, int spot) {
-        this.children[spot] = new TSTNode(c3);
+    public void setChild(char c, int spot) {
+        this.children[spot] = new TSTNode(c);
     }
 
     public TSTNode[] getChildren() {
