@@ -1,5 +1,28 @@
 public class Trie
 {
+    private class Node
+    {
+        boolean isWord;
+        Node[] children;
+        public Node()
+        {
+            isWord = false;
+            children = new Node[SpellCheck.EXT_ASCII_LENGTH];
+        }
+
+        public boolean isWord()
+        {
+            return isWord;
+        }
+
+        public void setWord(boolean word) {
+            isWord = word;
+        }
+
+        public Node[] getChildren() {
+            return children;
+        }
+    }
     Node root;
     public Trie()
     {
@@ -14,15 +37,15 @@ public class Trie
     {
         Node currentNode = root;
         boolean found = false;
-        //int num = 0;
+        int index = 0;
         for(char c: word.toCharArray())
         {
-            //num = (int) c;
-            if(currentNode.getNext()[c] == null)
+            index = (int) c;
+            if(currentNode.getChildren()[index] == null)
             {
-                currentNode.getNext()[c] = new Node();
+                currentNode.getChildren()[index] = new Node();
             }
-            currentNode = currentNode.getNext()[c];
+            currentNode = currentNode.getChildren()[index];
         }
         currentNode.setWord(true);
     }
@@ -30,15 +53,15 @@ public class Trie
     public boolean lookUp(String word)
     {
         Node currentNode = root;
-        int num = 0;
+        int index = 0;
         for(char c: word.toCharArray())
         {
-            num = (int) c;
-            if(num < 0 || num >= SpellCheck.EXT_ASCII_LENGTH || currentNode.getNext()[num] == null)
+            index = (int) c;
+            if(index < 0 || index >= SpellCheck.EXT_ASCII_LENGTH || currentNode.getChildren()[index] == null)
             {
                 return false;
             }
-            currentNode = currentNode.getNext()[num];
+            currentNode = currentNode.getChildren()[index];
         }
         return currentNode.isWord();
     }

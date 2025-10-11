@@ -1,9 +1,51 @@
 public class TST
 {
+    private class TSTNode
+    {
+        public static final int NUM_CHILDREN = 3;
+        TSTNode[] children;
+        boolean isWord;
+        char c;
+        public TSTNode(char c)
+        {
+            children = new TSTNode[NUM_CHILDREN];
+            isWord = false;
+            this.c = c;
+        }
+
+        public char getC() {
+            return c;
+        }
+
+        public boolean isWord()
+        {
+            return isWord;
+        }
+
+        public void setWord(boolean word) {
+            isWord = word;
+        }
+        public TSTNode getChild(int spot)
+        {
+            return children[spot];
+        }
+        public void setChild(char c, int spot) {
+            this.children[spot] = new TSTNode(c);
+        }
+
+        public TSTNode[] getChildren() {
+            return children;
+        }
+    }
+
     TSTNode root;
+    public static final int LEFT_CHILD = 0;
+    public static final int MIDDLE_CHILD = 1;
+    public static final int RIGHT_CHILD = 2;
+
     public TST()
     {
-        root = null;
+        root = new TSTNode('m');
     }
 
     public TSTNode getRoot() {
@@ -16,44 +58,41 @@ public class TST
         {
             return;
         }
-        if (root == null) {
-            root = new TSTNode(word.charAt(0));
-        }
-        TSTNode current = root;
-        char c;
+        TSTNode currentNode = root;
+        char currentChar;
         int index = 0;
-        while(current != null)
+        while(currentNode != null)
         {
-            c = word.charAt(index);
-            if(c > current.getC())
+            currentChar = word.charAt(index);
+            if(currentChar > currentNode.getC())
             {
-                if(current.getChild(2) == null)
+                if(currentNode.getChild(RIGHT_CHILD) == null)
                 {
-                    current.setChild(c, 2);
+                    currentNode.setChild(currentChar, RIGHT_CHILD);
                 }
-                current = current.getChild(2);
+                currentNode = currentNode.getChild(RIGHT_CHILD);
             }
-            else if(c < current.getC())
+            else if(currentChar < currentNode.getC())
             {
-                if(current.getChild(0) == null)
+                if(currentNode.getChild(LEFT_CHILD) == null)
                 {
-                    current.setChild(c, 0);
+                    currentNode.setChild(currentChar, LEFT_CHILD);
                 }
-                current = current.getChild(0);
+                currentNode = currentNode.getChild(LEFT_CHILD);
             }
             else
             {
                 if(index == word.length() - 1)
                 {
-                    current.setWord(true);
+                    currentNode.setWord(true);
                     break;
                 }
                 index++;
-                if(current.getChild(1) == null)
+                if(currentNode.getChild(MIDDLE_CHILD) == null)
                 {
-                    current.setChild(word.charAt(index), 1);
+                    currentNode.setChild(word.charAt(index),  MIDDLE_CHILD);
                 }
-                current = current.getChild(1);
+                currentNode = currentNode.getChild(MIDDLE_CHILD);
             }
         }
     }
@@ -64,29 +103,29 @@ public class TST
         {
             return false;
         }
-        TSTNode current = root;
-        char c;
+        TSTNode currentNode = root;
+        char currentChar;
         int index = 0;
-        while(current != null)
+        while(currentNode != null)
         {
-            c = word.charAt(index);
-            if(c > current.getC())
+            currentChar = word.charAt(index);
+            if(currentChar > currentNode.getC())
             {
-                    current = current.getChild(2);
+                currentNode = currentNode.getChild(RIGHT_CHILD);
 
             }
-            else if(c < current.getC())
+            else if(currentChar < currentNode.getC())
             {
-                    current = current.getChild(0);
+                currentNode = currentNode.getChild(LEFT_CHILD);
             }
-            else if (c == current.getC())
+            else
             {
                 if(index == word.length() - 1)
                 {
-                    return current.isWord;
+                    return currentNode.isWord;
                 }
                 index++;
-                current = current.getChild(1);
+                currentNode = currentNode.getChild(MIDDLE_CHILD);
             }
             }
         return false;
