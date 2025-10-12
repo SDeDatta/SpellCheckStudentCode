@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class SpellCheck {
 
+    // Constant for the size of each array in the trie
     public static final int EXT_ASCII_LENGTH = 256;
     /**
      * checkWords finds all words in text that are not present in dictionary
@@ -24,14 +25,16 @@ public class SpellCheck {
         return runTST(text, dictionary);
 
     }
+    // Runs the trie
     private String[] runTrie(String[] text, String[] dictionary)
     {
         Trie dictTrie = new Trie();
-
+        // Inserts every word in the dictionary into a single trie
         for(String word: dictionary)
         {
             dictTrie.insert(word);
         }
+        // Creates a trie for all words in text that don't appear in the dictionary
         Trie missedTrie = new Trie();
         ArrayList<String> missedList = new ArrayList<>();
         for(String word: text)
@@ -41,20 +44,24 @@ public class SpellCheck {
                 if(!missedTrie.lookUp(word))
                 {
                     missedList.add(word);
+                    // Adds to the "missed" trie if a word doesn't appear to actually be a word
                     missedTrie.insert(word);
                 }
             }
         }
+        // Converts the trie to a String array using a built-in java function
         return missedList.toArray(new String[0]);
     }
+    // Runs the TST
     private String[] runTST(String[] text, String[] dictionary)
     {
         TST dictTST = new TST();
-
+        // Puts every word in the dictionary into a TST
         for(String word: dictionary)
         {
             dictTST.insert(word);
         }
+        // Creates a TST for all words in text that don't appear in the dictionary
         TST missedTST = new TST();
         ArrayList<String> missedList = new ArrayList<>();
         for(String word: text)
@@ -68,6 +75,7 @@ public class SpellCheck {
                 }
             }
         }
+        // Converts the TST to a String array using a built-in java function
         return missedList.toArray(new String[0]);
     }
 }

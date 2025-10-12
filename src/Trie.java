@@ -36,7 +36,6 @@ public class Trie
     public void insert(String word)
     {
         Node currentNode = root;
-        boolean found = false;
         int index = 0;
         for(char c: word.toCharArray())
         {
