@@ -115,7 +115,7 @@ public class TST
             }
         }
     }
-
+    // Checks whether a given word is in the TST
     public boolean lookUp(String word)
     {
         if(word.isEmpty())
